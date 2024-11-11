@@ -61,12 +61,14 @@ elseif strcmpi(ext,'.avi')
         i = 1;
         if sframe == 1
             imData(:,:,i-sframe+1) = Y1;
+            % imData(:,:,i-sframe+1) = squeeze(Y1(:,:,2)); % DS RETAIN ONLY THE GREEN CHANNEL
         end
         while hasFrame(v)  && (i - sframe + 1 < num2read)
             video = readFrame(v);
             i = i + 1;
             if i >= sframe
                 imData(:,:,i-sframe+1) = video;
+                % imData(:,:,i-sframe+1) = video(:,:,2); % DS RETAIN ONLY THE GREEN CHANNEL
             end
             if i - sframe + 1 >= num2read
                 break;
